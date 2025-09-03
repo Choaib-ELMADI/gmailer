@@ -1,0 +1,19 @@
+{
+	"name": "Gmailer Extension",
+	"version": "1.0.0",
+	"description": "Navigate all your Gmails the smart way.",
+
+	"manifest_version": 3,
+	"permissions": ["tabs"],
+	"host_permissions": ["https://mail.google.com/mail/u/*"],
+
+	"action": {
+		"default_icon": {
+			"16": "Images/logo-1.png",
+			"24": "Images/logo-1.png",
+			"32": "Images/logo-1.png"
+		},
+		"default_title": "Navigate Gmail the smart way",
+		"default_popup": "index.html"
+	}
+}

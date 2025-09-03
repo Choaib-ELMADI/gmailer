@@ -1,0 +1,106 @@
+:root {
+    --main_color: #ececec;
+    --secondary_color: #b4b4b4;
+    --secondary_color_trs: rgba(180, 180, 180, 0.5);
+    --main_bg: #212121;
+    --side_bg_color: #171717;
+    --pop_bg_color: #2f2f2f;
+    --hover_pop_bg_color: #424242;
+    --error_color: rgb(228, 44, 44);
+    --brand_color: #1bb63c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+body {
+    min-width: 300px;
+    background: var(--pop_bg_color);
+    border: .5px solid var(--secondary_color_trs);
+    padding: .5rem;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+
+    .topnav {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        user-select: none;
+
+        .logo {
+            width: 26px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .name {
+            display: flex;
+            align-items: center;
+
+            h1 {
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--main_color);
+
+                &:nth-child(1) {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .left {
+            user-select: none;
+            color: var(--secondary_color);
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: .125rem;
+
+                color: var(--secondary_color);
+
+                &:hover {
+                    color: var(--main_color);
+                }
+
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    fill: #ffca28;
+                }
+            }
+        }
+
+        .right {
+            user-select: none;
+            color: var(--secondary_color);
+
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+
+            a {
+                color: var(--secondary_color);
+
+                &:hover {
+                    color: var(--main_color);
+                }
+            }
+        }
+    }
+}
