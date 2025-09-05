@@ -20,3 +20,29 @@ export function handleNotMailTab() {
 
 	contentContainer.appendChild(notMailContainer);
 }
+
+export function getMailIndexAndTab(currentTab) {
+	const mailTabs = ["#inbox", "#sent", "#all", "#spam", "#trash"];
+	let mailIndex = currentTab.url.split("/")[5];
+	let mailTabIndex = mailTabs.indexOf(currentTab.url.split("/")[6]);
+	return [parseInt(mailIndex), mailTabIndex];
+}
+
+export async function updateUI(mailIndex, mailTitle, mailId) {
+	const currentTab = await getCurrentTab();
+	await chrome.tabs.update(currentTab.id, {
+		url: `https://mail.google.com/mail/u/${mailIndex}/#${mailId}`,
+	});
+
+	const mailIndexContainer = document.getElementById("mail-index");
+	const currentTabContainer = document.getElementById("current-tab");
+
+	if (mailTitle === "Inbox") {
+		currentTabContainer.classList.add("active");
+	} else {
+		currentTabContainer.classList.remove("active");
+	}
+
+	mailIndexContainer.innerText = mailIndex;
+	currentTabContainer.innerText = mailTitle;
+}
