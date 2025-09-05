@@ -1,17 +1,10 @@
 import {
 	getCurrentTab,
-	getMailIndexAndTab,
 	handleNotMailTab,
 	updateUI,
+	getMailIndexAndTab,
+	updateCurrentTabUrl,
 } from "./utils.js";
-
-const mailTabs = [
-	{ id: "inbox", title: "Inbox" },
-	{ id: "sent", title: "Sent" },
-	{ id: "all", title: "All Mail" },
-	{ id: "spam", title: "Spam" },
-	{ id: "trash", title: "Bin" },
-];
 
 document.addEventListener("DOMContentLoaded", async () => {
 	const mailLeftBtn = document.getElementById("prev-mail");
@@ -22,8 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// .- -- --- //
 
 	let currentTab = "";
-	let mailIndex = 0;
-	let mailTabIndex = 0;
+	let res = [];
 
 	// .- -- --- //
 
@@ -33,57 +25,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 		return;
 	}
 
-	let res = getMailIndexAndTab(currentTab);
-	mailIndex = res[0];
-	mailTabIndex = res[1];
+	updateUI(currentTab);
 
-	updateUI(mailIndex, mailTabs[mailTabIndex].title, mailTabs[mailTabIndex].id);
-
-	mailLeftBtn.addEventListener("click", () => {
-		if (mailIndex >= 1) {
-			mailIndex--;
-			updateUI(
-				mailIndex,
-				mailTabs[mailTabIndex].title,
-				mailTabs[mailTabIndex].id
-			);
+	mailLeftBtn.addEventListener("click", async () => {
+		res = getMailIndexAndTab(currentTab);
+		if (res[0] >= 1) {
+			res[0]--;
+			currentTab = await updateCurrentTabUrl(res[0], res[1]);
+			updateUI(currentTab);
 		}
 	});
 
-	mailRightBtn.addEventListener("click", () => {
-		mailIndex++;
-		updateUI(
-			mailIndex,
-			mailTabs[mailTabIndex].title,
-			mailTabs[mailTabIndex].id
-		);
+	mailRightBtn.addEventListener("click", async () => {
+		res = getMailIndexAndTab(currentTab);
+		res[0]++;
+		currentTab = await updateCurrentTabUrl(res[0], res[1]);
+		updateUI(currentTab);
 	});
 
-	tabLeftBtn.addEventListener("click", () => {
-		if (mailTabIndex >= 1) {
-			mailTabIndex--;
+	tabLeftBtn.addEventListener("click", async () => {
+		res = getMailIndexAndTab(currentTab);
+		if (res[1] >= 1) {
+			res[1]--;
 		} else {
-			mailTabIndex = 4;
+			res[1] = 4;
 		}
 
-		updateUI(
-			mailIndex,
-			mailTabs[mailTabIndex].title,
-			mailTabs[mailTabIndex].id
-		);
+		currentTab = await updateCurrentTabUrl(res[0], res[1]);
+		updateUI(currentTab);
 	});
 
-	tabRightBtn.addEventListener("click", () => {
-		if (mailTabIndex >= 4) {
-			mailTabIndex = 0;
+	tabRightBtn.addEventListener("click", async () => {
+		res = getMailIndexAndTab(currentTab);
+		if (res[1] >= 4) {
+			res[1] = 0;
 		} else {
-			mailTabIndex++;
+			res[1]++;
 		}
 
-		updateUI(
-			mailIndex,
-			mailTabs[mailTabIndex].title,
-			mailTabs[mailTabIndex].id
-		);
+		currentTab = await updateCurrentTabUrl(res[0], res[1]);
+		updateUI(currentTab);
 	});
 });
