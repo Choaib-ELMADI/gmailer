@@ -9,9 +9,9 @@
 
 	"action": {
 		"default_icon": {
-			"16": "Images/logo-1.png",
-			"24": "Images/logo-1.png",
-			"32": "Images/logo-1.png"
+			"16": "Images/logo.png",
+			"24": "Images/logo.png",
+			"32": "Images/logo.png"
 		},
 		"default_title": "Navigate Gmail the smart way",
 		"default_popup": "index.html"
