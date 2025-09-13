@@ -38,7 +38,11 @@ git clone https://github.com/Choaib-ELMADI/gmailer.git
 
 4. Click on **Load unpacked** and select the folder where you cloned or downloaded the extension.
 
-<!-- or TODO HERE -->
+or, you can easily install Gmailer from the Chrome Web Store:
+
+1. Go to the [Chrome Web Store page for Gmailer Extension](https://chromewebstore.google.com/detail/gmailer-extension/ndpnckmciioigggockfdcmhpcdolfmme).
+
+2. Click on **Add to Chrome** to install the extension.
 
 ## Usage
 
